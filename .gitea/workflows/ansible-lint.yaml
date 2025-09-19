@@ -6,14 +6,15 @@ jobs:
   Explore-Gitea-Actions:
     runs-on: ansible-validate
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ vars }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by Gitea!"
-      - run: echo "🔎 The name of your branch is ${{ gitea.ref }} and your repository is ${{ gitea.repository }}."
       - name: Check out repository code
         uses: actions/checkout@v4
-      - run: echo "💡 The ${{ vars.gitea.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
+      - name: Lint using ansible
         run: |
-          ls ${{ gitea.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+           cd ${{ gitea.workspace }}
+           ansible-lint 
+      - name: Test using molecule
+        run: |
+          cd ${{ gitea.workspace }}
+          if [ -d molecule ]; then 
+            molecule test
+          fi
