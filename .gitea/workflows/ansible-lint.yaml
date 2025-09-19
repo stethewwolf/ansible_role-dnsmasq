@@ -1,10 +1,10 @@
-name: Gitea Actions Demo
+name: Ansible Validation
 run-name: ${{ gitea.actor }} is testing out Gitea Actions 🚀
-on: [push]
+on: [push, manual]
 
 jobs:
   Explore-Gitea-Actions:
-    runs-on: ansible
+    runs-on: ansible-test
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ gitea.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by Gitea!"
