@@ -4,7 +4,7 @@ on: [push, manual]
 
 jobs:
   Explore-Gitea-Actions:
-    runs-on: ansible-validator
+    runs-on: ansible-validate
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ gitea.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by Gitea!"
